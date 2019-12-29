@@ -1,6 +1,6 @@
 package com.pluralsight.javatesting;
 
-public class Cafe {
+public final class Cafe {
     private int beansInStock = 0;
     private int milkInStock = 0;
 
