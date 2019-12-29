@@ -1,4 +1,4 @@
 package com.pluralsight.javatesting;
 
-public class Cafe {
+public class CafeTest {
 }
