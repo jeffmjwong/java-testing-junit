@@ -4,6 +4,13 @@ public class Cafe {
     private int beansInStock = 0;
     private int milkInStock = 0;
 
+    public int getBeansInStock() {
+        return this.beansInStock;
+    }
+    public int getMilkInStock() {
+        return this.milkInStock;
+    }
+
     public Coffee brew(CoffeeType coffeeType) {
         return brew(coffeeType, 1);
     }
@@ -24,7 +31,18 @@ public class Cafe {
     }
 
     public void restockBeans(int weightInGrams) {
-        this.requiredPositive(weightInGrams);
+        this.requirePositive(weightInGrams);
         this.beansInStock += weightInGrams;
+    }
+
+    public void restockMilk(int weightInGrams) {
+        this.requirePositive(weightInGrams);
+        this.milkInStock += weightInGrams;
+    }
+
+    private void requirePositive(int value) {
+        if (value < 1) {
+            throw new IllegalArgumentException();
+        }
     }
 }
