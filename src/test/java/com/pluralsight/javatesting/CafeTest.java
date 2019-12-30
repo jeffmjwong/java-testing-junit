@@ -15,4 +15,14 @@ public class CafeTest {
         Assert.assertEquals(0, coffee.getMilk());
         Assert.assertEquals(CoffeeType.Espresso.getRequiredBeans(), coffee.getBeans());
     }
+
+    @Test
+    public void brewingEspressoConsumesBeans() {
+        Cafe cafe = new Cafe();
+        cafe.restockBeans(CoffeeType.Espresso.getRequiredBeans());
+
+        Coffee coffee = cafe.brew(CoffeeType.Espresso);
+
+        Assert.assertEquals(0, cafe.getBeansInStock());
+    }
 }
