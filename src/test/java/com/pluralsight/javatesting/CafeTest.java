@@ -10,7 +10,6 @@ public class CafeTest {
     private static final int ESPRESSO_BEANS = Espresso.getRequiredBeans();
     private static final int NO_MILK = 0;
     private static final int NO_BEANS = 0;
-    private static final int LATTE_MILK = Latte.getRequiredMilk();
 
     @Test
     public void canBrewEspresso() {
@@ -35,11 +34,18 @@ public class CafeTest {
     @Test
     public void canBrewLatte() {
         Cafe cafe = cafeWithBeans();
-        cafe.restockMilk(LATTE_MILK);
+        cafe.restockMilk(Latte.getRequiredMilk());
 
         Coffee coffee = cafe.brew(Latte);
 
         Assert.assertEquals("Wrong coffee type", Latte, coffee.getCoffeeType());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void mustRestockPositiveMilk() {
+        Cafe cafe = new Cafe();
+
+        cafe.restockMilk(NO_MILK);
     }
 
     @Test(expected = IllegalStateException.class)
