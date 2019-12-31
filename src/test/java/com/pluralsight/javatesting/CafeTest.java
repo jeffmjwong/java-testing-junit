@@ -64,7 +64,7 @@ public class CafeTest {
 
     private Cafe cafeWithBeans() {
         Cafe cafe = new Cafe();
-        cafe.restockBeans(7);
+        cafe.restockBeans(ESPRESSO_BEANS);
         return cafe;
     }
 }
