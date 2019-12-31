@@ -1,10 +1,7 @@
 package com.pluralsight.javatesting;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static com.pluralsight.javatesting.CoffeeType.Espresso;
