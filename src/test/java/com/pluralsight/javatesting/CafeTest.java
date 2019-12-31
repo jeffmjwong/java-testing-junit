@@ -1,6 +1,10 @@
 package com.pluralsight.javatesting;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static com.pluralsight.javatesting.CoffeeType.Espresso;
@@ -11,9 +15,16 @@ public class CafeTest {
     private static final int NO_MILK = 0;
     private static final int NO_BEANS = 0;
 
+    private Cafe cafe;
+
+    @Before
+    public void before() {
+        this.cafe = new Cafe();
+    }
+
     @Test
     public void canBrewEspresso() {
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         Coffee coffee = cafe.brew(Espresso);
 
@@ -24,7 +35,7 @@ public class CafeTest {
 
     @Test
     public void brewingEspressoConsumesBeans() {
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         Coffee coffee = cafe.brew(Espresso);
 
@@ -33,7 +44,7 @@ public class CafeTest {
 
     @Test
     public void canBrewLatte() {
-        Cafe cafe = cafeWithBeans();
+        withBeans();
         cafe.restockMilk(Latte.getRequiredMilk());
 
         Coffee coffee = cafe.brew(Latte);
@@ -43,28 +54,22 @@ public class CafeTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void mustRestockPositiveMilk() {
-        Cafe cafe = new Cafe();
-
         cafe.restockMilk(NO_MILK);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void mustRestockPositiveBeans() {
-        Cafe cafe = new Cafe();
-
         cafe.restockMilk(NO_BEANS);
     }
 
     @Test(expected = IllegalStateException.class)
     public void lattesRequiresMilk() {
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         Coffee coffee = cafe.brew(Latte);
     }
 
-    private Cafe cafeWithBeans() {
-        Cafe cafe = new Cafe();
-        cafe.restockBeans(ESPRESSO_BEANS);
-        return cafe;
+    private void withBeans() {
+        this.cafe.restockBeans(ESPRESSO_BEANS);
     }
 }
