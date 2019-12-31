@@ -6,8 +6,7 @@ import org.junit.Test;
 public class CafeTest {
     @Test
     public void canBrewEspresso() {
-        Cafe cafe = new Cafe();
-        cafe.restockBeans(CoffeeType.Espresso.getRequiredBeans());
+        Cafe cafe = cafeWithBeans();
 
         Coffee coffee = cafe.brew(CoffeeType.Espresso);
 
@@ -18,8 +17,7 @@ public class CafeTest {
 
     @Test
     public void brewingEspressoConsumesBeans() {
-        Cafe cafe = new Cafe();
-        cafe.restockBeans(CoffeeType.Espresso.getRequiredBeans());
+        Cafe cafe = cafeWithBeans();
 
         Coffee coffee = cafe.brew(CoffeeType.Espresso);
 
@@ -28,9 +26,14 @@ public class CafeTest {
 
     @Test(expected = IllegalStateException.class)
     public void lattesRequiresMilk() {
-        Cafe cafe = new Cafe();
-        cafe.restockBeans(CoffeeType.Latte.getRequiredBeans());
+        Cafe cafe = cafeWithBeans();
 
         Coffee coffee = cafe.brew(CoffeeType.Latte);
+    }
+
+    private Cafe cafeWithBeans() {
+        Cafe cafe = new Cafe();
+        cafe.restockBeans(7);
+        return cafe;
     }
 }

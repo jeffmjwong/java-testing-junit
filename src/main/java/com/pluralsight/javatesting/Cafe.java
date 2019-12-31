@@ -27,7 +27,7 @@ public final class Cafe {
         this.beansInStock -= requiredBeans;
         this.milkInStock -= requiredMilk;
 
-        return new Coffee(null, requiredBeans, requiredMilk);
+        return new Coffee(coffeeType, requiredBeans, requiredMilk);
     }
 
     public void restockBeans(int weightInGrams) {
