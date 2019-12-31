@@ -48,6 +48,13 @@ public class CafeTest {
         cafe.restockMilk(NO_MILK);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void mustRestockPositiveBeans() {
+        Cafe cafe = new Cafe();
+
+        cafe.restockMilk(NO_BEANS);
+    }
+
     @Test(expected = IllegalStateException.class)
     public void lattesRequiresMilk() {
         Cafe cafe = cafeWithBeans();
