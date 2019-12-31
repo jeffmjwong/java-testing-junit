@@ -11,9 +11,9 @@ public class CafeTest {
 
         Coffee coffee = cafe.brew(CoffeeType.Espresso);
 
-        Assert.assertEquals(CoffeeType.Espresso, coffee.getCoffeeType());
-        Assert.assertEquals(0, coffee.getMilk());
-        Assert.assertEquals(CoffeeType.Espresso.getRequiredBeans(), coffee.getBeans());
+        Assert.assertEquals("Wrong coffee type", CoffeeType.Espresso, coffee.getCoffeeType());
+        Assert.assertEquals("Wrong amount of milk",0, coffee.getMilk());
+        Assert.assertEquals("Wrong number of beans", CoffeeType.Espresso.getRequiredBeans(), coffee.getBeans());
     }
 
     @Test
@@ -24,5 +24,13 @@ public class CafeTest {
         Coffee coffee = cafe.brew(CoffeeType.Espresso);
 
         Assert.assertEquals(0, cafe.getBeansInStock());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void lattesRequiresMilk() {
+        Cafe cafe = new Cafe();
+        cafe.restockBeans(CoffeeType.Latte.getRequiredBeans());
+
+        Coffee coffee = cafe.brew(CoffeeType.Latte);
     }
 }
